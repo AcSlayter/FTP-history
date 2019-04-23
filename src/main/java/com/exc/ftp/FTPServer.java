@@ -2,6 +2,7 @@ package com.exc.ftp;
 
 import com.exc.filesystem.DirectoryType;
 import com.exc.filesystem.FileType;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
@@ -27,7 +28,6 @@ public class FTPServer {
         ftpClient.login(this.userName,this.password);
 
     }
-
 
     public DirectoryType getFileStructure() {
 
@@ -74,6 +74,12 @@ public class FTPServer {
         }
     }
 
+    public void getFile() throws IOException {
+        if(ftpClient.isConnected()){
+            ftpClient.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();
 
+        }
+    }
 
 }
